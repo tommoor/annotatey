@@ -1,0 +1,32 @@
+{
+	"name": "TabToDropbox",
+	"version": "1.0.0",
+	"description": "Annotate and save a tab instantly to Dropbox",
+	"background": {
+    "scripts": [
+      "js/libs/jquery-1.7.1.min.js", 
+      "js/capture.js"
+    ],
+    "persistent": false
+	},
+  "manifest_version": 2,
+  "permissions": [
+    "tabCapture",
+    "tabs",
+    "http://*/*"
+  ],
+  "content_scripts": [
+      {
+        "matches": ["http://*/*"],
+        "css": ["css/annotate.css"],
+        "js": [
+          "js/libs/jquery-1.7.1.min.js", 
+          "js/libs/dropbox.js", 
+          "js/annotate.js"
+        ]
+      }
+  ],
+  "browser_action": {
+      "default_icon": "icon.png"
+  }
+}
