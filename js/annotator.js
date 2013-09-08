@@ -13,7 +13,7 @@ $(function(){
         
         localStorage.lastCapture = data;
         
-        chrome.runtime.sendMessage({save: true});
+        chrome.runtime.sendMessage({save: true, width: canvas.width, height: canvas.height});
     });
     
     $('a.file-saver').click(function() {
