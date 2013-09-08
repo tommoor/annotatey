@@ -15,8 +15,16 @@ function captureTab() {
 }
 
 chrome.browserAction.onClicked.addListener(function(){
-    console.log('clicked');
-    
+    captureTab();
+});
+
+chrome.contextMenus.create({
+    title: "Annotate Page",
+    contexts: ["page"],
+    id: "annotate"
+});
+
+chrome.contextMenus.onClicked.addListener(function(){
     captureTab();
 });
 
