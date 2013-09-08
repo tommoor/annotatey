@@ -29,6 +29,11 @@ $(function(){
         $(this).addClass('selected');
     });
     
+    $('a.tool').click(function() {
+        $('a.tool').removeClass('selected');
+        $(this).addClass('selected');
+    });
+    
     canvas.width = $window.width();
     canvas.height = $window.height();
     $canvas.sketch();

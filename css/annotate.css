@@ -50,6 +50,15 @@ nav .tools a.color.selected {
     box-shadow: inset 0 3px 0 rgba(0,0,0,0.2);
 }
 
+nav .tools a.tool {
+    opacity: 0.5;
+    margin-right: 10px;
+}
+
+nav .tools a.tool.selected {
+    opacity: 1;
+}
+
 nav .close {
     float: right;
     color: #4C4C4C;
