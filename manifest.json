@@ -5,6 +5,8 @@
 	"background": {
     "scripts": [
       "js/libs/jquery-1.7.1.min.js", 
+      "js/libs/dropbox.js",
+      "js/libs/toblob.js",
       "js/capture.js"
     ],
     "persistent": false
