@@ -37,18 +37,12 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
             // that assumes everything went well.
             return;
           }
-
-          // Replace with a call to your own application code.
-          //
-          // The user authorized your app, and everything went well.
-          // client is a Dropbox.Client instance that you can use to make API calls.
-          console.log('authenticated', client);
           
           var img = new Image();
           var canvas = $('<canvas/>').get(0);
           canvas.width = win.width;
           canvas.height = win.height;
-
+          
           img.onload = function() {
               console.log('converting...');
               
@@ -67,6 +61,10 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
                    }
                    
                    console.log('file saved, getting public link');
+                   
+                   chrome.tabs.getSelected(null, function(tab) {
+                       chrome.tabs.sendMessage(tab.id, {saved: true});
+                   });
                    
                    client.makeUrl(filename, function(error, link){
                        console.log('public link is', link);
