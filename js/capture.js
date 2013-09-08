@@ -53,18 +53,25 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
               console.log('converting...');
               
               var context = canvas.getContext('2d');
+              var filename = localStorage.filename + ".png";
+              
               context.drawImage(img, 0, 0, win.width, win.height);
               canvas.toData(function(data){
                  
                  console.log('saving...');
                  
                  // reader.result contains the contents of blob as a typed array
-                 client.writeFile(localStorage.filename + ".png",data, function(error, stat) {
+                 client.writeFile(filename, data, function(error, stat) {
                    if (error) {
                      return console.log(error);  // Something went wrong.
                    }
                    
-                   console.log("File saved as revision " + stat.revisionTag);
+                   console.log('file saved, getting public link');
+                   
+                   client.makeUrl(filename, function(error, link){
+                       console.log('public link is', link);
+                       window.open(link.url);
+                   });
                  });
               }, 'image/png');
           };

@@ -1,7 +1,9 @@
 $(function(){
     var img = new Image();
-    var canvas = $('canvas').get(0);
-    
+    var $canvas = $('canvas');
+    var $window = $(window);
+    var canvas = $canvas.get(0);
+     
     $('nav').animate({top: 0}, 500);
     $('a.dropbox-save').click(function() {
         var data = canvas.toDataURL('image/png');
@@ -11,15 +13,10 @@ $(function(){
         chrome.runtime.sendMessage({save: true});
     });
     
-    img.onload = function() {
-        console.log(img.width, img.height);
-        
-        var context = canvas.getContext('2d');
-        canvas.width = img.width;
-        canvas.height = img.height;
-        $('canvas').sketch();
-        context.drawImage(img, 0, 0, img.width, img.height);
-    };
+    console.log($window.width(), $window.height());
     
-    img.src = localStorage.lastCapture;
+    canvas.width = $window.width();
+    canvas.height = $window.height();
+    $canvas.sketch();
+    $canvas.data('sketch').load(localStorage.lastCapture);
 });
